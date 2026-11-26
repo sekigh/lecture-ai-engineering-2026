@@ -19,8 +19,9 @@
 - 結果：
 　・基礎
 「 $ uv run python -m app.mcp_agent --trace "第3回の講義内容を3行以内で要約して"」を実行し、正しく、第3回の講義要約を3行程度で出力した。[tool call]   glossary_get_lecture_summary({'lecture': 3})
-また、「3行以内」を省いて、「 $ uv run python -m app.mcp_agent --trace "第3回の講義内容で要約して"」を実行すると、20行程度の要約を出力した。
+また、「3行以内」を省いて、「 $ uv run python -m app.mcp_agent --trace "第3回の講義内容で要約して"」を実行すると、20行程度の要約を出力した。[tool call]   glossary_get_lecture_summary({'lecture': 3})
+
 　・実装
 　「 $ uv run python -m app.mcp_agent --trace "第2回の内容から確認問題を1問出して"」で、「**【確認問題】**　Q. 「ファインチューニング」の意味は？」と、正しい質問を出力した。[tool call]   glossary_make_quiz({'lecture': 2})
-また、講義回がない回を指定した場合、「 $ uv run python -m app.mcp_agent --trace "第99回の内容から確認問題を1問出して"」では、「第99回に関する情報や用語は講座の用語集に登録されていないため、確認問題を作成することができません。現在の講座で用意されている回の範囲内で確認問題を出題することは可能ですので、ご希望の回（例えば第1回〜第N回など）を指定していただければ作成いたします。」と丁寧に再質問を促した。上手くいった。
+また、講義回がない回を指定した場合、「 $ uv run python -m app.mcp_agent --trace "第99回の内容から確認問題を1問出して"」では、「第99回に関する情報や用語は講座の用語集に登録されていないため、確認問題を作成することができません。現在の講座で用意されている回の範囲内で確認問題を出題することは可能ですので、ご希望の回（例えば第1回〜第N回など）を指定していただければ作成いたします。」と丁寧に再質問を促した。上手くいった。[tool call]   glossary_make_quiz({'lecture': 99})
 - 気づき・疑問：localに作成した２つのtoolをMCPサーバ化した。localのツールの場合、mcp_servers.jsonには、local tool用に、既にglossary名でMCPサーバが登録されているので、追加の２つのツールのために、特に記述を追加する必要はないことを理解した。
